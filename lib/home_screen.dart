@@ -1,3 +1,6 @@
+
+import 'package:fashion/product_details_screen.dart';
+import 'package:fashion/searching_screen.dart';
 import 'package:fashion/widgets/customnavigationbar.dart';
 import 'package:fashion/widgets/customtwo.dart';
 import 'package:fashion/widgets/video_player_widget.dart';
@@ -21,7 +24,10 @@ class HomeScreen extends StatelessWidget {
             Spacer(),
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: Icon(Icons.search),
+              child: IconButton(
+                  icon:Icon(Icons.search),onPressed:(){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SearchingScreen()));
+              } ,),
             ),
           ],
           bottom: TabBar(
@@ -81,23 +87,28 @@ class HomeScreen extends StatelessWidget {
                          itemBuilder: (context, index) {
                            return Padding(
                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                             child: Column(
-                               children: [
-                                 Container(
-                                   height: 80,
-                                   width: 80,
-                                   decoration: BoxDecoration(
-                                     borderRadius: BorderRadius.circular(10),
-                                     image: DecorationImage(
-                                       image: AssetImage(
-                                           'assets/images/laser.png'),  // Replace with your image
-                                       fit: BoxFit.cover,
+                             child: GestureDetector(
+                               onTap: (){
+                                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductDetailScreen()));
+                               },
+                               child: Column(
+                                 children: [
+                                   Container(
+                                     height: 80,
+                                     width: 80,
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(10),
+                                       image: DecorationImage(
+                                         image: AssetImage(
+                                             'assets/images/laser.png'),  // Replace with your image
+                                         fit: BoxFit.cover,
+                                       ),
                                      ),
                                    ),
-                                 ),
-                                 SizedBox(height: 8),
-                                 Text('جلد'),
-                               ],
+                                   SizedBox(height: 8),
+                                   Text('جلد'),
+                                 ],
+                               ),
                              ),
                            );
                          },
@@ -294,6 +305,7 @@ class HomeScreen extends StatelessWidget {
                              );
                            },
                          ),
+                         SizedBox(height: 70),
                        ],
                      ),
                    ),
